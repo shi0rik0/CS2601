@@ -38,12 +38,12 @@ def draw_plot(x0, path):
     x_traces = newton.newton(fp, fpp, x0)
     f_value = f(x_traces[-1])
 
-    print(f([-np.log(2)/2, 0]))
     print()
     print("Newton's method")
     print('  number of iterations:', len(x_traces)-1)
     print('  solution:', x_traces[-1])
     print('  value:', f_value)
+    print()
 
     utils.plot_traces_2d(f_2d, x_traces, path+'nt_traces.png')
     utils.plot(gap, x_traces, path+'nt_gap.png')

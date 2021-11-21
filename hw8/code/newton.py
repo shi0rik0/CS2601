@@ -39,18 +39,16 @@ def damped_newton(f, fp, fpp, x0, alpha=0.5, beta=0.5, tol=1e-5, maxiter=100000)
     """
     x_traces = [np.array(x0)]
     stepsize_traces = []
-    tot_num_iter = 0
-
     x = np.array(x0)
-
-    for it in range(maxiter):
-        #   START OF YOUR CODE
-
-        pass
-
-        #	END OF YOUR CODE
-
-        x_traces.append(np.array(x))
-        stepsize_traces.append(stepsize)
+    tot_num_iter = 0
+    while np.linalg.norm(fp(x)) > tol and len(x_traces) <= maxiter:
+        d = -np.linalg.solve(fpp(x), fp(x))
+        t = 1
+        while f(x+t*d) > f(x) + alpha*t*fp(x)@d:
+            tot_num_iter += 1
+            t *= beta
+        stepsize_traces.append(t)
+        x += t * d
+        x_traces.append(x.copy())
 
     return x_traces, stepsize_traces, tot_num_iter
