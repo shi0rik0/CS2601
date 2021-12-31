@@ -14,7 +14,7 @@ def solve(y, z):
     U = np.concatenate([[0], np.cumsum(u[::-1])])[::-1]
     W = np.concatenate([[0], np.cumsum(w)])
     u = np.concatenate([[-np.inf], u, [np.inf]])
-    w = np.concatenate([[-np.inf], u, [np.inf]])
+    w = np.concatenate([[-np.inf], w, [np.inf]])
     k = 0
     l = 0
     while k <= p and l <= m:
